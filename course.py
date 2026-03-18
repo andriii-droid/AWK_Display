@@ -18,6 +18,7 @@ class Course:
         else:
             print("init Arrays aro not the same lenght!")
 
+    #Adds a pointer to player object
     def addPlayer(self, player):
         self.players.append(player)
 
@@ -39,3 +40,18 @@ class Course:
             if not attendance[0]:
                 indices.append(n)
         return indices
+    
+    #returns average absolute number attended  courses
+    def avCourseAbs(self):
+        totalAttendace = 0
+        for player in self.players:
+            pass #TODO Implement
+        return None
+    
+    #returns average relative number attended  courses
+    def avCourseRel(self):
+        totalAttendace = 0
+        for player in self.players:
+            pass #TODO Implement
+        return None
+
