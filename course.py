@@ -17,3 +17,14 @@ class Course:
                         self.att["Friday"].append([exec, date])
         else:
             print("init Arrays aro not the same lenght!")
+
+    #returns number of courses of provided type
+    def getNumCourses(self, type):
+        return len(self.att[type])
+
+    #returns number of carried out courses of provided type
+    def getNumCarriedCourses(self, type):
+        totCarr = 0
+        for wasCarr in self.att[type]:
+            totCarr += wasCarr[0]
+        return totCarr
