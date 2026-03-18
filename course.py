@@ -28,3 +28,11 @@ class Course:
         for wasCarr in self.att[type]:
             totCarr += wasCarr[0]
         return totCarr
+    
+    #returns the indices where the courses did not carried out
+    def getIndicesWhereNotCarried(self, type):
+        indices = []
+        for n, attendance in enumerate(self.att[type]):
+            if not attendance[0]:
+                indices.append(n)
+        return indices
