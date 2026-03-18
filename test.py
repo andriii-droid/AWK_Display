@@ -1,4 +1,5 @@
 from course import Course
+from player import Player
 
 ex = [1,1,1,1]
 typ = ["T", "T", "T", "Wettkampf"]
