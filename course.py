@@ -18,6 +18,9 @@ class Course:
         else:
             print("init Arrays aro not the same lenght!")
 
+    def addPlayer(self, player):
+        self.players.append(player)
+
     #returns number of courses of provided type
     def getNumCourses(self, type):
         return len(self.att[type])
