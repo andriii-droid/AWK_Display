@@ -17,3 +17,12 @@ class Player:
             self.att[type].append(exec)
             if type in {ct.tuesday, ct.wednesday, ct.friday}:
                 self.att[ct.exercise].append(exec)
+
+    def get_sum_arr(self, type):
+        '''Return an Array that increases by one, when attended'''
+        sum_array = []
+        count = 0
+        for attendance in self.att[type]:
+            count += attendance[0]
+            sum_array.append(count)
+        return sum_array
