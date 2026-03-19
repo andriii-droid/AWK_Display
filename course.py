@@ -27,38 +27,38 @@ class Course:
             if type in {ct.tuesday, ct.wednesday, ct.friday}:
                 self.att[ct.exercise].append([exec, date])
 
-    #Adds a pointer to player object
     def add_player(self, player):
+        '''Add a pointer to player object'''
         self.players.append(player)
 
-    #returns number of courses of provided type
     def get_num_courses(self, type):
+        '''return number of courses of provided type'''
         return len(self.att[type])
 
-    #returns number of carried out courses of provided type
     def get_num_carried_courses(self, type):
+        '''return number of carried out courses of provided type'''
         totCarr = 0
         for wasCarr in self.att[type]:
             totCarr += wasCarr[0]
         return totCarr
     
-    #returns the indices where the courses did not carried out
     def get_indices_where_not_carried(self, type):
+        '''return the indices where the courses did not carrie out'''
         indices = []
         for n, attendance in enumerate(self.att[type]):
             if not attendance[0]:
                 indices.append(n)
         return indices
     
-    #returns average absolute number attended  courses
     def av_course_abs(self):
+        '''return average absolute number attended courses'''
         totalAttendace = 0
         for player in self.players:
             pass #TODO Implement
         return None
     
-    #returns average relative number attended  courses
     def av_course_rel(self):
+        '''return average relative number attended  courses'''
         totalAttendace = 0
         for player in self.players:
             pass #TODO Implement
