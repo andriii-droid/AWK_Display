@@ -27,6 +27,7 @@ class AWKTable:
             <q-tr :props="props">
                 <q-td auto-width>
                     <q-btn size="sm" color="accent" round dense
+                       @click="props.expand = !props.expand"
                         :icon="props.expand ? 'remove' : 'add'" />
                 </q-td>
                 <q-td @click="props.expand = !props.expand" v-for="col in props.cols" :key="col.name" :props="props">
@@ -47,7 +48,8 @@ class AWKTable:
                                     {{ item.day }}
                                 </div>
                                 <div class="text-h6 text-white">{{ item.abs }}</div>
-                                <div :class="parseFloat(item.rel) >= 80 ? 'text-positive' : 'text-warning'" 
+                                <div :class="parseFloat(item.rel) >= 80 ? 'text-positive' : 
+                                            parseFloat(item.rel) >= 50 ? 'text-warning' : 'text-negative'" 
                                     class="text-caption text-weight-bold">
                                     {{ item.rel }}
                                 </div>
@@ -67,10 +69,10 @@ class AWKTable:
                 'relAtt': f"{p.get_sum_rel(ct.exercise)}%",
                 # Hier die Liste für den Loop im Slot
                 'details_list': [
-                    {'day': 'Match', 'abs': 1, 'rel': '100%'},
-                    {'day': 'Dienstag', 'abs': 1, 'rel': '100%'},
-                    {'day': 'Mittwoch', 'abs': 1, 'rel': '100%'},
-                    {'day': 'Freitag', 'abs': 1, 'rel': '100%'},
+                    {'day': 'Wettkampf', 'abs': p.get_sum_abs(ct.competition), 'rel': f'{p.get_sum_rel(ct.competition)}%'},
+                    {'day': 'Dienstag', 'abs': p.get_sum_abs(ct.tuesday), 'rel': f'{p.get_sum_rel(ct.tuesday)}%'},
+                    {'day': 'Mittwoch', 'abs': p.get_sum_abs(ct.wednesday), 'rel': f'{p.get_sum_rel(ct.wednesday)}%'},
+                    {'day': 'Freitag', 'abs': p.get_sum_abs(ct.friday), 'rel': f'{p.get_sum_rel(ct.friday)}%'},
                 ]
             } for p in self.course.players
         ]
