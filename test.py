@@ -12,6 +12,6 @@ f = Course(executed=ex, types=typ, days=day, dates=dat)
 andri = Player(f, ex, "Andri")
 
 print(f.att)
-print(f.getIndicesWhereNotCarried(ct.exercise))
-print(f.getIndicesWhereNotCarried(ct.wednesday))
+print(f.get_indices_where_not_carried(ct.exercise))
+print(f.get_indices_where_not_carried(ct.wednesday))
 print(andri.att)
