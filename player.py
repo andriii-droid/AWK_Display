@@ -3,3 +3,4 @@ class Player:
         self.course = course
         self.course.players.append(self)
         self.name = name
+        self.coach = coach
