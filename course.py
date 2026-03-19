@@ -50,17 +50,12 @@ class Course:
                 indices.append(n)
         return indices
     
-    def av_course_abs(self):
-        '''return average absolute number attended courses'''
-        totalAttendace = 0
-        for player in self.players:
-            pass #TODO Implement
-        return None
+    def av_course_abs(self, type):
+        '''return average absolute number attended courses of provided type'''
+        return sum(self.players.get_sum_abs(type)) / len(self.players)
     
-    def av_course_rel(self):
-        '''return average relative number attended  courses'''
-        totalAttendace = 0
-        for player in self.players:
-            pass #TODO Implement
-        return None
+    def av_course_rel(self, type):
+        '''return average relative number attended  courses of provided type'''
+        return round(sum(self.players.get_sum_rel(type)) / len(self.players), 2)
+
 
