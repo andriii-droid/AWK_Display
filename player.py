@@ -18,11 +18,21 @@ class Player:
             if type in {ct.tuesday, ct.wednesday, ct.friday}:
                 self.att[ct.exercise].append(exec)
 
-    def get_sum_arr(self, type):
-        '''Return an Array that increases by one, when attended'''
+    def get_step_arr(self, type):
+        '''Return an Array that increases by one, when attended, depending on provided course_type'''
         sum_array = []
         count = 0
         for attendance in self.att[type]:
             count += attendance[0]
             sum_array.append(count)
         return sum_array
+    
+    def get_sum_abs(self, type):
+        '''return total number of attended courses, depending on provided course_type'''
+        return sum(self.att[type][0])    
+    
+    def get_sum_rel(self, type):
+        '''return percentage of attended courses depending on provided course_type'''
+        return round(self.get_sum_abs(type) / self.course.get_num_carried_courses(type) *100, 2)
+
+
