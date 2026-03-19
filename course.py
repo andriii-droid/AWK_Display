@@ -5,20 +5,25 @@ class Course:
         self.players = []
         self.att = {ct.exercise: [], ct.competition: [], ct.tuesday: [], ct.wednesday: [], ct.friday: []}
 
+        self.course_type = []
         if len(executed) == len(types) == len(days) == len(dates):
-            for exec, type, day, date in zip(executed, types, days, dates):
+            for type, day in zip(types, days):
                 if type.startswith("Wettkampf"):
-                    self.att[ct.competition].append([exec, date])
+                    self.course_type.append(ct.competition)
                 elif type.startswith("T"):
-                    self.att[ct.exercise].append([exec, date])
                     if day.startswith("DI"):
-                        self.att[ct.tuesday].append([exec, date])
+                        self.course_type.append(ct.tuesday)
                     elif day.startswith("MI"):
-                        self.att[ct.wednesday].append([exec, date])
+                        self.course_type.append(ct.wednesday)
                     elif day.startswith("FR"):
-                        self.att[ct.friday].append([exec, date])
+                        self.course_type.append(ct.friday)
         else:
             print("init Arrays aro not the same lenght!")
+        
+        for type, exec, date in zip(self.course_type, executed, dates):
+            self.att[type].append([exec, date])
+            if type in {ct.tuesday, ct.wednesday, ct.friday}:
+                self.att[ct.exercise].append([exec, date])
 
     #Adds a pointer to player object
     def addPlayer(self, player):

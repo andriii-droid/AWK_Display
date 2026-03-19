@@ -1,6 +1,8 @@
-class CourseType:
-    exercise = 0
-    competition = 1
-    tuesday = 2
-    wednesday = 3
-    friday = 4
+from enum import StrEnum
+
+class CourseType(StrEnum):
+    exercise = "Exercise"
+    competition = "Competition"
+    tuesday = "Tuesday"
+    wednesday = "Wednesday"
+    friday = "Friday"
