@@ -1,8 +1,8 @@
 class Course:
-    players = [] #Contains a list of all Players of that attended the course
-    att = {"Exercise": [], "Competition": [], "Tuesday": [], "Wednesday": [], "Friday": []}
-
     def __init__(self, executed, types, days, dates):
+        self.players = []
+        self.att = {"Exercise": [], "Competition": [], "Tuesday": [], "Wednesday": [], "Friday": []}
+
         if len(executed) == len(types) == len(days) == len(dates):
             for exec, type, day, date in zip(executed, types, days, dates):
                 if type.startswith("Wettkampf"):
