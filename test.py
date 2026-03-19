@@ -1,7 +1,9 @@
 from course import Course
 from player import Player
 from course_type import CourseType as ct
+from awk_table import AWKTable as awkt
 
+from nicegui import ui
 
 ex = [1,1,1,1]
 typ = ["T", "T", "T", "Wettkampf"]
@@ -11,3 +13,6 @@ dat = ["12.3", "23.3", "24.3", "26.3"]
 f = Course(executed=ex, types=typ, days=day, dates=dat)
 andri = Player(f, [1,1,1,1], "Andri")
 
+awkt(f, "Spieler")
+
+ui.run(dark=True)
