@@ -23,13 +23,13 @@ class Player:
         sum_array = []
         count = 0
         for attendance in self.att[type]:
-            count += attendance[0]
+            count += attendance
             sum_array.append(count)
         return sum_array
     
     def get_sum_abs(self, type):
         '''return total number of attended courses, depending on provided course_type'''
-        return sum(self.att[type][0])    
+        return sum(self.att[type])    
     
     def get_sum_rel(self, type):
         '''return percentage of attended courses depending on provided course_type'''
