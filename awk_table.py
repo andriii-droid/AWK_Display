@@ -8,8 +8,12 @@ class AWKTable:
         {'name': 'relAtt', 'label': 'Anwesenheit Relativ', 'field': 'relAtt', 'sortable': True},
     ]
 
-    def __init__(self, course, title):
+    def __init__(self, course, coach=False):
         self.course = course
+        self.coach = coach
+        title = "Spieler"
+        if self.coach: 
+            title = "Trainer"
         table = ui.table(columns=self.columns, rows=self.get_rows(), row_key='name', title=title).classes('w-200')
 
         # Header Slot
@@ -74,5 +78,5 @@ class AWKTable:
                     {'day': 'Mittwoch', 'abs': p.get_sum_abs(ct.wednesday), 'rel': f'{p.get_sum_rel(ct.wednesday)}%'},
                     {'day': 'Freitag', 'abs': p.get_sum_abs(ct.friday), 'rel': f'{p.get_sum_rel(ct.friday)}%'},
                 ]
-            } for p in self.course.players
+            } for p in self.course.players if self.coach == p.coach
         ]
