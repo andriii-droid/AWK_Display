@@ -1,4 +1,5 @@
 from course_type import CourseType as ct
+import sys
 
 class Course:
     def __init__(self, executed, types, days, dates):
@@ -19,6 +20,7 @@ class Course:
                         self.course_type.append(ct.friday)
         else:
             print("init Arrays aro not the same lenght!")
+            sys.exit()
         
         for type, exec, date in zip(self.course_type, executed, dates):
             self.att[type].append([exec, date])
