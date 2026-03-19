@@ -1,5 +1,7 @@
 from course import Course
 from player import Player
+from course_type import CourseType as ct
+
 
 ex = [1,1,1,1]
 typ = ["T", "T", "T", "Wettkampf"]
@@ -10,5 +12,5 @@ f = Course(executed=ex, types=typ, days=day, dates=dat)
 andri = Player(f, [0,1], "Andri")
 
 print(f.att)
-print(f.getIndicesWhereNotCarried("Exercise"))
-print(f.getIndicesWhereNotCarried("Wednesday"))
+print(f.getIndicesWhereNotCarried(ct.exercise))
+print(f.getIndicesWhereNotCarried(ct.wednesday))

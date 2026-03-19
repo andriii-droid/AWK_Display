@@ -1,20 +1,22 @@
+from course_type import CourseType as ct
+
 class Course:
     def __init__(self, executed, types, days, dates):
         self.players = []
-        self.att = {"Exercise": [], "Competition": [], "Tuesday": [], "Wednesday": [], "Friday": []}
+        self.att = {ct.exercise: [], ct.competition: [], ct.tuesday: [], ct.wednesday: [], ct.friday: []}
 
         if len(executed) == len(types) == len(days) == len(dates):
             for exec, type, day, date in zip(executed, types, days, dates):
                 if type.startswith("Wettkampf"):
-                    self.att["Competition"].append([exec, date])
+                    self.att[ct.competition].append([exec, date])
                 elif type.startswith("T"):
-                    self.att["Exercise"].append([exec, date])
+                    self.att[ct.exercise].append([exec, date])
                     if day.startswith("DI"):
-                        self.att["Tuesday"].append([exec, date])
+                        self.att[ct.tuesday].append([exec, date])
                     elif day.startswith("MI"):
-                        self.att["Wednesday"].append([exec, date])
+                        self.att[ct.wednesday].append([exec, date])
                     elif day.startswith("FR"):
-                        self.att["Friday"].append([exec, date])
+                        self.att[ct.friday].append([exec, date])
         else:
             print("init Arrays aro not the same lenght!")
 
