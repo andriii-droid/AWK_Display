@@ -19,6 +19,9 @@ class Page:
                     awkt(self.course)
                     awkt(self.course, coach=True)
                 with ui.tab_panel(two):
+                    with ui.column().classes('w-full items-center'):
+                        t = ui.toggle(['Wettkampf', 'Training', 'Dienstag', 'Mittwoch', 'Freitag'], value='Training')
+                        t.props('color=black-9 text-color=white toggle-color=accent toggle-text-color=white')
                     awke(self.course)
                     
 
