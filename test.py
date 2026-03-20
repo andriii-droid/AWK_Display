@@ -11,31 +11,23 @@ typ = ["T", "T", "T", "Wettkampf"]
 day = ["MI", "FR", "DI", "SA"]
 dat = ["12.3", "23.3", "24.3", "26.3"]
 
-f = Course(executed=ex, types=typ, days=day, dates=dat, name="Test")
-andri = Player(f, [1,0,1,1], "Andri", coach=False)
-
-page_nachwuchs = Page(f)
+cs = [Course(executed=ex, types=typ, days=day, dates=dat, name="Test")]
+andri = Player(cs[0], [1,0,1,1], "Andri", coach=False)
 
 @ui.page('/')
 def main_page():
     with ui.header().classes('items-center bg-blue-9 px-4'):
         ui.label('TTC Uster').classes('text-h6 font-bold text-white')
-        
-        ui.space() # Pushes the following button to the right
+        ui.space()
         
         with ui.button(icon='menu').props('flat'):
             with ui.menu() as menu:
                 ui.menu_item('Home', on_click=lambda: Page.show_home(content_area))
-                
-        
-    def append_item(page):
-        item_count = len(menu.default_slot.children)
-        # Re-enter the menu context to add a new child
-        with menu:
-            ui.menu_item(f'{page.course.name}', 
-                     on_click=lambda: page.show_content(content_area))
             
-    append_item(page_nachwuchs)
+    for course in cs:
+        with menu:
+            ui.menu_item(f'{course.name}', 
+                     on_click=lambda: course.page.show_content(content_area))
         
 
     content_area = ui.column().classes('w-full items-center p-4 mt-2')

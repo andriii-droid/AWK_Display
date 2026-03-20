@@ -1,5 +1,6 @@
 from course_type import CourseType as ct
 import sys
+from page import Page as pg
 
 class Course:
     def __init__(self, executed, types, days, dates, name):
@@ -27,6 +28,9 @@ class Course:
             self.att[type].append([exec, date])
             if type in {ct.tuesday, ct.wednesday, ct.friday}:
                 self.att[ct.exercise].append([exec, date])
+
+        self.page = pg(self)
+        
 
     def add_player(self, player):
         '''Add a pointer to player object'''
