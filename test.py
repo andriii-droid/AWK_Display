@@ -2,6 +2,7 @@ from course import Course
 from player import Player
 from course_type import CourseType as ct
 from awk_table import AWKTable as awkt
+from page import Page
 
 from nicegui import ui
 
@@ -10,23 +11,23 @@ typ = ["T", "T", "T", "Wettkampf"]
 day = ["MI", "FR", "DI", "SA"]
 dat = ["12.3", "23.3", "24.3", "26.3"]
 
-f = Course(executed=ex, types=typ, days=day, dates=dat)
+f = Course(executed=ex, types=typ, days=day, dates=dat, name="Test")
 andri = Player(f, [1,0,1,1], "Andri", coach=False)
 
+page_nachwuchs = Page(f)
 
 @ui.page('/')
-def home_page():
-    with ui.row().classes('w-full items-center'):
-        ui.label('AWK Display').classes('mr-auto text-2xl font-bold')
-        with ui.button(icon='menu'):
-            with ui.menu() as menu:
-                ui.menu_item('Go to Settings', lambda: ui.navigate.to('/settings'))
+def main_page():
+    # 1. Create a LOCAL container for THIS specific browser session
+    content_area = ui.column().classes('w-full items-center border p-4')
+    
+    # 2. Navigation
+    with ui.row().classes('w-full justify-center bg-blue-1 p-2'):
+        # We use a lambda to pass the 'content_area' into the methods
+        ui.button('Dashboard', on_click=lambda: Page.show_home(content_area))
+        ui.button('Nachwuchs', on_click=lambda: page_nachwuchs.show_content(content_area))
 
-# 2. Define the Second Page
-@ui.page('/settings')
-def settings_page():
-    ui.label('Settings Page')
-    ui.button('Go Back Home', on_click=lambda: ui.navigate.to('/'))
-
+    # 3. Initial Render
+    Page.show_home(content_area)
 
 ui.run(dark=True)

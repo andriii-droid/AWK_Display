@@ -2,8 +2,9 @@ from course_type import CourseType as ct
 import sys
 
 class Course:
-    def __init__(self, executed, types, days, dates):
+    def __init__(self, executed, types, days, dates, name):
         self.players = []
+        self. name = name
         self.att = {ct.exercise: [], ct.competition: [], ct.tuesday: [], ct.wednesday: [], ct.friday: []}
 
         self.course_type = []
