@@ -1,5 +1,6 @@
 from nicegui import ui
 from awk_table import AWKTable as awkt
+from awk_echart import AWKEchart as awke
 
 class Page:
     def __init__(self, course):
@@ -18,7 +19,8 @@ class Page:
                     awkt(self.course)
                     awkt(self.course, coach=True)
                 with ui.tab_panel(two):
-                    ui.label('Second tab')
+                    awke(self.course)
+                    
 
 
     @staticmethod

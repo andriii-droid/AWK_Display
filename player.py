@@ -33,6 +33,8 @@ class Player:
     
     def get_sum_rel(self, type):
         '''return percentage of attended courses depending on provided course_type'''
+        if self.course.get_num_carried_courses(type) == 0:
+            return 0
         return round(self.get_sum_abs(type) / self.course.get_num_carried_courses(type) *100, 2)
 
 
