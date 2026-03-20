@@ -14,7 +14,7 @@ class AWKTable:
         title = "Spieler"
         if self.coach: 
             title = "Trainer"
-        table = ui.table(columns=self.columns, rows=self.get_rows(), row_key='name', title=title).classes('w-200')
+        table = ui.table(columns=self.columns, rows=self.get_rows(), row_key='name', title=title).classes('w-3/4')
 
         table.add_slot('header', r'''
             <q-tr :props="props">
