@@ -40,14 +40,14 @@ class AWKEchart:
         }
     }
     
-    def __init__(self, course, *, coach=False):
+    def __init__(self, course, type ,*, coach=False):
         self.course = course
-        ui.echart(options=self.get_options(ct.exercise)).classes('w-full h-196')
+        ui.echart(options=self.get_options(type)).classes('w-full h-196')
 
     def get_mark_data(self, type):
         '''get the data to color the echart red'''
         mark_data = []
-        for index in self.course.get_indices_where_not_carried(ct.exercise):
+        for index in self.course.get_indices_where_not_carried(type):
             mark_data.append([
                 {'xAxis': self.course.get_date_array(type)[max(0, index - 1)]}, 
                 {'xAxis': self.course.get_date_array(type)[index]}
