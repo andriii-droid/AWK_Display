@@ -17,16 +17,23 @@ class Page:
                 one = ui.tab('Anwesenheiten')
                 two = ui.tab('Zeitleiste')
             with ui.tab_panels(tabs, value=two).classes('w-full'):
-                with ui.tab_panel(one):
-                    awkt(self.course)
-                    awkt(self.course, coach=True)
+                with ui.tab_panel(one).classes('items-center'):
+                    t1 = ui.toggle(['Wettkampf', 'Training', 'Dienstag', 'Mittwoch', 'Freitag'], value='Training')
+                    t1.props('color=black-9 text-color=white toggle-color=accent toggle-text-color=white')
+                    t1.on_value_change(lambda e: self.table_display.refresh(self.get_course_type(e.value)))
+                    self.table_display(ct.exercise)
                 with ui.tab_panel(two):
                     with ui.column().classes('w-full items-center'):
-                        t = ui.toggle(['Wettkampf', 'Training', 'Dienstag', 'Mittwoch', 'Freitag'], value='Training')
-                        t.props('color=black-9 text-color=white toggle-color=accent toggle-text-color=white')
-                        t.on_value_change(lambda e: self.chart_display.refresh(self.get_course_type(e.value)))
+                        t2 = ui.toggle(['Wettkampf', 'Training', 'Dienstag', 'Mittwoch', 'Freitag'], value='Training')
+                        t2.props('color=black-9 text-color=white toggle-color=accent toggle-text-color=white')
+                        t2.on_value_change(lambda e: self.chart_display.refresh(self.get_course_type(e.value)))
                         self.chart_display(ct.exercise)
-                    
+
+    @ui.refreshable
+    def table_display(self, course_type):
+        awkt(self.course, course_type)
+        awkt(self.course, course_type, coach=True)
+
     @ui.refreshable
     def chart_display(self, course_type):
         awke(self.course, course_type)

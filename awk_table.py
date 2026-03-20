@@ -8,7 +8,8 @@ class AWKTable:
         {'name': 'relAtt', 'label': 'Anwesenheit Relativ', 'field': 'relAtt', 'sortable': True},
     ]
 
-    def __init__(self, course, *, coach=False):
+    def __init__(self, course, type, *, coach=False):
+        self.type = type
         self.course = course
         self.coach = coach
         title = "Spieler"
@@ -38,7 +39,7 @@ class AWKTable:
             </q-tr>
             
             <q-tr v-show="props.expand" :props="props">
-                <q-td colspan="4" class="bg-blue-grey-10 q-pa-none">
+                <q-td colspan="4" class="q-pa-none">
                     <div class="q-pa-md">
                         <div class="row items-center justify-center q-gutter-md">
                             
@@ -67,10 +68,12 @@ class AWKTable:
         return [
             {
                 'name': p.name,
-                'totAtt': p.get_sum_abs(ct.exercise),
-                'relAtt': f"{p.get_sum_rel(ct.exercise)}%",
+                'totAtt': p.get_sum_abs(self.type),
+                'relAtt': f"{p.get_sum_rel(self.type)}%",
                 'details_list': [
                     {'day': 'Wettkampf', 'abs': p.get_sum_abs(ct.competition), 'rel': f'{p.get_sum_rel(ct.competition)}%'},
+                    {'day': '', 'abs': '|', 'rel': ''},
+                    {'day': 'Training', 'abs': p.get_sum_abs(ct.exercise), 'rel': f'{p.get_sum_rel(ct.exercise)}%'},
                     {'day': 'Dienstag', 'abs': p.get_sum_abs(ct.tuesday), 'rel': f'{p.get_sum_rel(ct.tuesday)}%'},
                     {'day': 'Mittwoch', 'abs': p.get_sum_abs(ct.wednesday), 'rel': f'{p.get_sum_rel(ct.wednesday)}%'},
                     {'day': 'Freitag', 'abs': p.get_sum_abs(ct.friday), 'rel': f'{p.get_sum_rel(ct.friday)}%'},
