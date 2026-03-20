@@ -10,8 +10,8 @@ class AWKEchart:
         mark_data = []
         for index in self.course.get_indices_where_not_carried(ct.exercise):
             mark_data.append([
-                {'xAxis': self.course.att[ct.exercise][1]}, 
-                {'xAxis': self.course.att[ct.exercise][1]}
+                {'xAxis': self.course.get_date_array(ct.exercise)[max(0, index - 1)]}, 
+                {'xAxis': self.course.get_date_array(ct.exercise)[index]}
             ])
 
         self.background_series = {
@@ -55,7 +55,7 @@ class AWKEchart:
             {
                 'name': p.name,
                 'type': 'line',
-                'data': p.get_step_arr(ct.exercise),
+                'data': [0, *p.get_step_arr(ct.exercise)],
                 'smooth': True,
                 'emphasis': {'focus': 'series'} 
             } for p in self.course.players
@@ -78,7 +78,7 @@ class AWKEchart:
                         'selected': {p.name: not p.coach for p in self.course.players}},
             'xAxis': {
                 'type': 'category',
-                'data': self.course.get_date_array(ct.exercise),
+                'data': ["", *self.course.get_date_array(ct.exercise)],
             },
             'yAxis': {
                 'type': 'value',

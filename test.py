@@ -7,13 +7,13 @@ from page import Page
 from nicegui import ui
 
 ex = [1,1,0,1]
-typ = ["T", "T", "T", "Wettkampf"]
-day = ["MI", "FR", "DI", "SA"]
+typ = ["T", "T", "T", "T"]
+day = ["MI", "FR", "DI", "MI"]
 dat = ["12.3", "23.3", "24.3", "26.3"]
 
 cs = [Course(executed=ex, types=typ, days=day, dates=dat, name="Test")]
-Player(cs[0], [1,1,0,1], "Andri", coach=False)
-Player(cs[0], [0,1,0,1], "Adrian", coach=False)
+Player(cs[0], [1,0,0,1], "Andri", coach=False)
+Player(cs[0], [1,1,0,1], "Adrian", coach=False)
 
 @ui.page('/')
 def main_page():
