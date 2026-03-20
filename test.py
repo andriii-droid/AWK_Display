@@ -29,7 +29,6 @@ def main_page():
             ui.menu_item(f'{course.name}', 
                      on_click=lambda: course.page.show_content(content_area))
         
-
     content_area = ui.column().classes('w-full items-center p-4 mt-2')
 
     Page.show_home(content_area)
