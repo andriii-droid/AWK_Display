@@ -55,6 +55,10 @@ class Course:
                 indices.append(n)
         return indices
     
+    def get_date_array(self, type):
+        '''return an Array of the dates depending on the type'''
+        return [date[1] for date in self.att[type]]
+    
     def av_course_abs(self, type):
         '''return average absolute number attended courses of provided type'''
         return sum(self.players.get_sum_abs(type)) / len(self.players)

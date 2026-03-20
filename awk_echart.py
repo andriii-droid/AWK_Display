@@ -78,7 +78,7 @@ class AWKEchart:
                         'selected': {p.name: not p.coach for p in self.course.players}},
             'xAxis': {
                 'type': 'category',
-                'data': [item[1] for item in self.course.att[ct.exercise]],
+                'data': self.course.get_date_array(ct.exercise),
             },
             'yAxis': {
                 'type': 'value',
