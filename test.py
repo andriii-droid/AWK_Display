@@ -12,18 +12,21 @@ day = ["MI", "FR", "DI", "SA"]
 dat = ["12.3", "23.3", "24.3", "26.3"]
 
 cs = [Course(executed=ex, types=typ, days=day, dates=dat, name="Test")]
-andri = Player(cs[0], [1,0,1,1], "Andri", coach=False)
+Player(cs[0], [1,0,1,1], "Andri", coach=False)
+Player(cs[0], [0,1,0,1], "Adrian", coach=False)
+
 
 @ui.page('/')
 def main_page():
-    with ui.header().classes('items-center bg-blue-9 px-4'):
+    with ui.header().classes('items-center bg-accent px-4'):
         ui.label('TTC Uster').classes('text-h6 font-bold text-white')
         ui.space()
         
-        with ui.button(icon='menu').props('flat'):
+        with ui.button(icon='menu').props('flat').classes('text-black'):
             with ui.menu() as menu:
                 ui.menu_item('Home', on_click=lambda: Page.show_home(content_area))
-            
+                ui.separator()
+
     for course in cs:
         with menu:
             ui.menu_item(f'{course.name}', 

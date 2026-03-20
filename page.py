@@ -8,7 +8,7 @@ class Page:
     def show_content(self, container):
         container.clear()
         with container:
-            ui.label(f'{self.course.name}').classes('text-h4 text-primary')
+            ui.label(f'{self.course.name}').classes('text-h4 text-white')
             awkt(self.course)
             awkt(self.course, coach=True)
 
