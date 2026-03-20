@@ -34,7 +34,7 @@ def main_page():
         
     content_area = ui.column().classes('w-full items-center p-4 mt-2')
 
-    Page.show_home(content_area)
+    cs[0].page.show_content(content_area)
 
 ui.run(dark=True)
 

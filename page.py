@@ -9,8 +9,17 @@ class Page:
         container.clear()
         with container:
             ui.label(f'{self.course.name}').classes('text-h4 text-white')
-            awkt(self.course)
-            awkt(self.course, coach=True)
+
+            with ui.tabs().classes('w-full h-full') as tabs:
+                one = ui.tab('Anwesenheiten')
+                two = ui.tab('Zeitleiste')
+            with ui.tab_panels(tabs, value=two).classes('w-full'):
+                with ui.tab_panel(one):
+                    awkt(self.course)
+                    awkt(self.course, coach=True)
+                with ui.tab_panel(two):
+                    ui.label('Second tab')
+
 
     @staticmethod
     def show_home(container):
