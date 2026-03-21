@@ -51,8 +51,6 @@ class CreateAWK:
 
             self.course.append(c)
 
-            print(df_trainer)
-
             for index, row in df_players.iterrows():
                 p = row.tolist()  
                 name = f"{p[2]} {p[1]}"
