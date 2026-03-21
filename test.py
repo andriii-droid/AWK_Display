@@ -3,17 +3,11 @@ from player import Player
 from course_type import CourseType as ct
 from awk_table import AWKTable as awkt
 from page import Page
+from create_awk import CreateAWK as cawk
 
 from nicegui import ui
 
-ex = [1,1,0,1]
-typ = ["T", "T", "T", "T"]
-day = ["MI", "DI", "DI", "MI"]
-dat = ["12.3", "23.3", "24.3", "26.3"]
-
-cs = [Course(executed=ex, types=typ, days=day, dates=dat, name="Test")]
-Player(cs[0], [1,0,0,1], "Andri", coach=False)
-Player(cs[0], [1,1,0,1], "Adrian", coach=False)
+files = cawk()
 
 @ui.page('/')
 def main_page():
@@ -26,14 +20,14 @@ def main_page():
                 ui.menu_item('Home', on_click=lambda: Page.show_home(content_area))
                 ui.separator()
 
-    for course in cs:
+    for course in files.course:
         with menu:
             ui.menu_item(f'{course.name}', 
                      on_click=lambda: course.page.show_content(content_area))
         
     content_area = ui.column().classes('w-full items-center p-4 mt-2')
 
-    cs[0].page.show_content(content_area)
+    Page.show_home(content_area)
 
 ui.run(dark=True)
 
