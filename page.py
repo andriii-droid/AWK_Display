@@ -58,7 +58,7 @@ class Page:
             ui.label('TTC Uster Dashboard').classes('text-h3')
             with ui.row().classes('flex-nowrap w-full'):
                 with ui.card().classes('w-1/2'):
-                    ui.label("AWk Statisken").classes('text-h5 font-bold text-white')
+                    ui.label("AWK Statisken").classes('text-h5 font-bold text-white')
                 with ui.card().classes('w-1/2'):
                     ui.label("AWK Kurse").classes('text-h5 font-bold q-mb-sm')
                     with ui.list().props('bordered separator').classes('w-full'):
