@@ -7,8 +7,6 @@ from create_awk import CreateAWK as cawk
 
 from nicegui import ui
 
-
-print(len([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]))
 files = cawk()
 
 @ui.page('/')

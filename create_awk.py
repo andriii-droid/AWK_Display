@@ -35,15 +35,10 @@ class CreateAWK:
             df_metadata = df_metadata.replace(['J', 'j', 'K', 'k', 'K, J', 'k, j'], 1)
             df_metadata = df_metadata.replace(['X'], 0)
 
-            list_executed = df_metadata.iloc[6].tolist()[3:]
+            list_executed = [int(x) if str(x).isdigit() else 0 for x in df_metadata.iloc[6].tolist()[3:]] 
             list_dates = df_metadata.iloc[1].tolist()[3:]
             list_course_type = df_metadata.iloc[3].tolist()[3:]
             list_days = df_metadata.iloc[0].tolist()[3:]
-
-            print(len(list_executed))
-            print(len(list_dates))
-            print(len(list_course_type))
-            print(len(list_days))
 
             c = Course(executed=list_executed,
                        types=list_course_type,
@@ -56,11 +51,11 @@ class CreateAWK:
             for index, row in df_players.iterrows():
                 p = row.tolist()  
                 name = f"{p[2]} {p[1]}"
-                attendance = p[3:]
+                attendance = [int(x) if str(x).isdigit() else 0 for x in p[3:]]
                 Player(c, attendance, name)
 
             for index, row in df_trainer.iterrows():
                 p = row.tolist()  
                 name = f"{p[2]} {p[1]}"
-                attendance = p[3:]
+                attendance = [int(x) if str(x).isdigit() else 0 for x in p[3:]]
                 Player(c, attendance, name, coach=True)
