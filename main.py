@@ -11,7 +11,7 @@ def main_page():
         ui.label('TTC Uster').classes('text-h6 font-bold text-white')
         ui.space()
         
-        with ui.button(icon='menu').props('flat').classes('text-black'):
+        with ui.button(icon='menu').props('flat').classes('text-white'):
             with ui.menu() as menu:
                 ui.menu_item('Home', on_click=lambda: Page.show_home(content_area))
                 ui.separator()
