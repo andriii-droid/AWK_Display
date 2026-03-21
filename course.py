@@ -11,7 +11,7 @@ class Course:
         self.course_type = []
         if len(executed) == len(types) == len(days) == len(dates):
             for type, day in zip(types, days):
-                if type.startswith("Wettkampf"):
+                if type.startswith("Wettkampf") or type.startswith("TT"):
                     self.course_type.append(ct.competition)
                 elif type.startswith("T"):
                     if day.startswith("DI"):

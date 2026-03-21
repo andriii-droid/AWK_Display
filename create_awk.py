@@ -40,6 +40,11 @@ class CreateAWK:
             list_course_type = df_metadata.iloc[3].tolist()[3:]
             list_days = df_metadata.iloc[0].tolist()[3:]
 
+            print(len(list_executed))
+            print(len(list_dates))
+            print(len(list_course_type))
+            print(len(list_days))
+
             c = Course(executed=list_executed,
                        types=list_course_type,
                        days=list_days, 
