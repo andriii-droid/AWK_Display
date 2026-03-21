@@ -5,8 +5,11 @@ from course_type import CourseType as ct
 
 
 class Page:
+    pages = []
+
     def __init__(self, course):
         self.course = course
+        self.add_page(self)
 
     def show_content(self, container):
         container.clear()
@@ -48,9 +51,33 @@ class Page:
         }
         return mapping.get(str_type, ct.exercise)
 
-    @staticmethod
-    def show_home(container):
+    @classmethod
+    def show_home(cls, container):
         container.clear()
         with container:
             ui.label('TTC Uster Dashboard').classes('text-h3')
-            #TODO SHow overall statistic or choose a course
+            with ui.row().classes('flex-nowrap w-full'):
+                with ui.card().classes('w-1/2'):
+                    ui.label("AWk Statisken").classes('text-h5 font-bold text-white')
+                with ui.card().classes('w-1/2'):
+                    ui.label("AWK Kurse").classes('text-h5 font-bold q-mb-sm')
+                    with ui.list().props('bordered separator').classes('w-full'):
+                        for p in cls.pages:
+                            cls.add_list_item(p, container)
+
+    @classmethod
+    def add_list_item(cls, page, container):              
+        with ui.item(on_click=lambda p=page: p.show_content(container)).props('clickable v-ripple'):
+            with ui.item_section().props('avatar'):
+                ui.icon('groups')
+            
+            with ui.item_section():
+                ui.item_label(page.course.name)
+            
+            with ui.item_section().props('side'):
+                ui.icon('chevron_right')
+
+
+    @classmethod
+    def add_page(cls, page):
+        cls.pages.append(page)
