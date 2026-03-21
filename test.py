@@ -1,7 +1,3 @@
-from course import Course
-from player import Player
-from course_type import CourseType as ct
-from awk_table import AWKTable as awkt
 from page import Page
 from create_awk import CreateAWK as cawk
 
@@ -23,7 +19,7 @@ def main_page():
     for course in files.course:
         with menu:
             ui.menu_item(f'{course.name}', 
-                     on_click=lambda: course.page.show_content(content_area))
+                        on_click=lambda c=course: c.page.show_content(content_area))
         
     content_area = ui.column().classes('w-full items-center p-4 mt-2')
 
