@@ -8,7 +8,8 @@ files = cawk()
 @ui.page('/')
 def main_page():
     with ui.header().classes('items-center bg-accent px-4'):
-        ui.label('TTC Uster').classes('text-h6 font-bold text-white')
+        ui.label('TTC Uster').classes('text-h6 font-bold text-white') \
+        .on('click', lambda: Page.show_home(content_area))
         ui.space()
         
         with ui.button(icon='menu').props('flat').classes('text-white'):
