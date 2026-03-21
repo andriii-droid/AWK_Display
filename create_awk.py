@@ -16,11 +16,9 @@ class CreateAWK:
             df = df.drop([0,1,2,3])
             df = df.drop(df.columns[3:5], axis=1)
 
-            print(f"Processing {file_path}: {len(df)} rows found.")
-
             try:
-                idx_leiter = df[df.iloc[:, 0].astype(str).str.contains("Leiter", na=False)].index[0]
-                idx_teilnehmer = df[df.iloc[:, 0].astype(str).str.contains("Teilnehmer", na=False)].index[0]
+                idx_leiter = df[df.iloc[:, 0].astype(str).str.contains("Leiter", na=False)].index[0] - 4
+                idx_teilnehmer = df[df.iloc[:, 0].astype(str).str.contains("Teilnehmer", na=False)].index[0] - 4
             except IndexError:
                 print("Fehler: Schlüsselwörter 'Leiter' oder 'Teilnehmer' nicht gefunden!")
 
@@ -52,6 +50,8 @@ class CreateAWK:
                        name=name)
 
             self.course.append(c)
+
+            print(df_trainer)
 
             for index, row in df_players.iterrows():
                 p = row.tolist()  
