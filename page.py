@@ -16,7 +16,7 @@ class Page:
             with ui.tabs().classes('w-full h-full') as tabs:
                 one = ui.tab('Anwesenheiten')
                 two = ui.tab('Zeitleiste')
-            with ui.tab_panels(tabs, value=two).classes('w-full'):
+            with ui.tab_panels(tabs, value=one).classes('w-full'):
                 with ui.tab_panel(one).classes('items-center'):
                     t1 = ui.toggle(['Wettkampf', 'Training', 'Dienstag', 'Mittwoch', 'Freitag'], value='Training')
                     t1.props('color=black-9 text-color=white toggle-color=accent toggle-text-color=white')

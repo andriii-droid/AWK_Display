@@ -11,7 +11,9 @@ class CreateAWK:
         self.course = []
 
         for file_path in excel_files:
-            df = pd.read_excel(file_path, dtype=str, skiprows=4)
+            df = pd.read_excel(file_path, dtype=str)
+            name = df.iloc[0, 1]
+            df = df.drop([0,1,2,3])
             df = df.drop(df.columns[3:5], axis=1)
 
             print(f"Processing {file_path}: {len(df)} rows found.")
@@ -40,11 +42,14 @@ class CreateAWK:
             list_course_type = df_metadata.iloc[3].tolist()[3:]
             list_days = df_metadata.iloc[0].tolist()[3:]
 
+            year = int(list_dates[-1].split("-")[0])
+            name = name.split("-")[-1] + f" Saison {year-1}/{year}"
+
             c = Course(executed=list_executed,
                        types=list_course_type,
                        days=list_days, 
                        dates=list_dates,
-                       name=file_path)
+                       name=name)
 
             self.course.append(c)
 
