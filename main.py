@@ -1,6 +1,5 @@
 from page import Page
 from create_awk import CreateAWK as cawk
-
 from nicegui import ui
 
 files = cawk()
