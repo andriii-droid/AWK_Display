@@ -70,13 +70,24 @@ class AWKTable:
                 'name': p.name,
                 'totAtt': p.get_sum_abs(self.type),
                 'relAtt': f"{p.get_sum_rel(self.type)}%",
-                'details_list': [
-                    {'day': 'Wettkampf', 'abs': p.get_sum_abs(ct.competition), 'rel': f'{p.get_sum_rel(ct.competition)}%'},
-                    {'day': '', 'abs': '|', 'rel': ''},
-                    {'day': 'Training', 'abs': p.get_sum_abs(ct.exercise), 'rel': f'{p.get_sum_rel(ct.exercise)}%'},
-                    {'day': 'Dienstag', 'abs': p.get_sum_abs(ct.tuesday), 'rel': f'{p.get_sum_rel(ct.tuesday)}%'},
-                    {'day': 'Mittwoch', 'abs': p.get_sum_abs(ct.wednesday), 'rel': f'{p.get_sum_rel(ct.wednesday)}%'},
-                    {'day': 'Freitag', 'abs': p.get_sum_abs(ct.friday), 'rel': f'{p.get_sum_rel(ct.friday)}%'},
-                ]
+                'details_list': self.get_details_list(p)
             } for p in self.course.players if self.coach == p.coach
         ]
+    
+    def get_details_list(self, player):
+        details_list = [
+            {'day': 'Wettkampf', 'abs': player.get_sum_abs(ct.competition), 'rel': f'{player.get_sum_rel(ct.competition)}%'},
+            {'day': '', 'abs': '|', 'rel': ''},
+            {'day': 'Training', 'abs': player.get_sum_abs(ct.exercise), 'rel': f'{player.get_sum_rel(ct.exercise)}%'},
+                ]
+        
+        if player.course.get_num_carried_courses(ct.tuesday):
+            details_list.append({'day': 'Dienstag', 'abs': player.get_sum_abs(ct.tuesday), 'rel': f'{player.get_sum_rel(ct.tuesday)}%'})
+
+        if player.course.get_num_carried_courses(ct.wednesday):
+            details_list.append({'day': 'Mittwoch', 'abs': player.get_sum_abs(ct.wednesday), 'rel': f'{player.get_sum_rel(ct.wednesday)}%'})
+        
+        if player.course.get_num_carried_courses(ct.friday):
+            details_list.append({'day': 'Freitag', 'abs': player.get_sum_abs(ct.friday), 'rel': f'{player.get_sum_rel(ct.friday)}%'})
+
+        return details_list
