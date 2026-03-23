@@ -21,16 +21,29 @@ class Page:
                 two = ui.tab('Zeitleiste')
             with ui.tab_panels(tabs, value=one).classes('w-full'):
                 with ui.tab_panel(one).classes('items-center'):
-                    t1 = ui.toggle(['Wettkampf', 'Training', 'Dienstag', 'Mittwoch', 'Freitag'], value='Training')
+                    t1 = ui.toggle(self.get_toggle(), value='Training')
                     t1.props('color=black-9 text-color=white toggle-color=accent toggle-text-color=white')
                     t1.on_value_change(lambda e: self.table_display.refresh(self.get_course_type(e.value)))
                     self.table_display(ct.exercise)
                 with ui.tab_panel(two):
                     with ui.column().classes('w-full items-center'):
-                        t2 = ui.toggle(['Wettkampf', 'Training', 'Dienstag', 'Mittwoch', 'Freitag'], value='Training')
+                        t2 = ui.toggle(self.get_toggle(), value='Training')
                         t2.props('color=black-9 text-color=white toggle-color=accent toggle-text-color=white')
                         t2.on_value_change(lambda e: self.chart_display.refresh(self.get_course_type(e.value)))
                         self.chart_display(ct.exercise)
+
+    def get_toggle(self):
+        toggle_list = ["Wettkampf", "Training"]
+        if self.course.get_num_carried_courses(ct.tuesday):
+            toggle_list.append("Dienstag")
+
+        if self.course.get_num_carried_courses(ct.wednesday):
+            toggle_list.append("Mittwoch")
+        
+        if self.course.get_num_carried_courses(ct.friday):
+            toggle_list.append("Freitag")
+
+        return toggle_list
 
     @ui.refreshable
     def table_display(self, course_type):
