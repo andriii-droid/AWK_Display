@@ -72,11 +72,26 @@ class Page:
             with ui.row().classes('flex-nowrap w-full'):
                 with ui.card().classes('w-1/2'):
                     ui.label("AWK Statisken").classes('text-h5 font-bold text-white')
+                    table = ui.table(columns=cls.get_columns(), row_key='name', rows=cls.get_rows(cls.pages)).classes('w-full')
                 with ui.card().classes('w-1/2'):
                     ui.label("AWK Kurse").classes('text-h5 font-bold q-mb-sm')
                     with ui.list().props('bordered separator').classes('w-full'):
                         for p in cls.pages:
                             cls.add_list_item(p, container)
+
+    @classmethod
+    def get_columns(cls):
+        return [
+            {'name': 'name', 'label': 'Name', 'field': 'name', 'required': True, 'align': 'left'},
+            {'name': 'attendance', 'label': 'Präsenz', 'field': 'attendance', 'required': True, 'align': 'left'}
+        ]
+    
+    @classmethod
+    def get_rows(cls, page):
+        return [{ 
+            'name': p.course.name,
+            'attendance': p.course.av_course_abs(ct.exercise)
+        } for p in page]
 
     @classmethod
     def add_list_item(cls, page, container):              

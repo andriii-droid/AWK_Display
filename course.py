@@ -61,10 +61,16 @@ class Course:
     
     def av_course_abs(self, type):
         '''return average absolute number attended courses of provided type'''
-        return sum(self.players.get_sum_abs(type)) / len(self.players)
+        if not self.players:
+                return 0 
+        total_abs = sum(p.get_sum_abs(type) for p in self.players)
+        return round(total_abs / len(self.players), 0)
     
     def av_course_rel(self, type):
         '''return average relative number attended  courses of provided type'''
-        return round(sum(self.players.get_sum_rel(type)) / len(self.players), 2)
+        if not self.players:
+            return 0 
+        total_rel = sum(p.get_sum_rel(type) for p in self.players)
+        return round(total_rel / len(self.players), 2)
 
 
