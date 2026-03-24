@@ -83,14 +83,18 @@ class Page:
     def get_columns(cls):
         return [
             {'name': 'name', 'label': 'Name', 'field': 'name', 'required': True, 'align': 'left'},
-            {'name': 'attendance', 'label': 'Präsenz', 'field': 'attendance', 'required': True, 'align': 'left'}
+            {'name': 'carried', 'label': 'Durchgeführt', 'field': 'carried', 'required': True, 'align': 'left'},
+            {'name': 'att_abs', 'label': 'Präsenz', 'field': 'att_abs', 'required': True, 'align': 'left'},
+            {'name': 'att_rel', 'label': '', 'field': 'att_rel', 'required': True, 'align': 'left'}
         ]
     
     @classmethod
     def get_rows(cls, page):
         return [{ 
             'name': p.course.name,
-            'attendance': p.course.av_course_abs(ct.exercise)
+            'carried': p.course.get_num_carried_courses(ct.exercise),
+            'att_abs': p.course.av_course_abs(ct.exercise),
+            'att_rel': f"{p.course.av_course_rel(ct.exercise)}%"
         } for p in page]
 
     @classmethod
